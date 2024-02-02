@@ -53,8 +53,3 @@ function truncateString(str, num) {
         return str;
     }
 }
-
-function copyPassword(){
-    passBox.select();
-    navigator.clipboard.writeText(passBox.value);
-}
