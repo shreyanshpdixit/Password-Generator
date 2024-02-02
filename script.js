@@ -1,27 +1,60 @@
-const passwordBox = document.getElementById("password");
-const length = 12;
+const upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const lowerSet = "abcdefghijklmnopqrstuvwxyz"
+const numberSet = "1234567890"
+const symbolSet = "~!@#$%^&*()_+/"
 
-const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const lowerCase = "abcdefghijklmnopqrstuvwxyz";
-const number = "0123456789";
-const symbol = "~!@#$%^&*()_+-={}[]|?<>";
+const passBox = document.getElementById("pass-box")
+const totalChar = document.getElementById("total-char")
+const upperInput = document.getElementById("upper-case")
+const lowerInput = document.getElementById("lower-case")
+const numberInput = document.getElementById("numbers")
+const symbolInput = document.getElementById("symbols")
 
-const allChar = upperCase + lowerCase + number + symbol;
+const getRandomData = (dataSet) => {
+    return dataSet[Math.floor(Math.random() * dataSet.length)]
+}
 
-function createPassword(){
-    let password = "";
-    password += upperCase[Math.floor(Math.random() * upperCase.length)];
-    password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
-    password += number[Math.floor(Math.random() * number.length)];
-    password += symbol[Math.floor(Math.random() * symbol.length)];
-
-    while(length > password.length){
-        password += allChar[Math.floor(Math.random() * allChar.length)];
+const generatePassword = (password = "") => {
+    if (upperInput.checked) {
+        password += getRandomData(upperSet)
     }
-    passwordBox.value = password;
+    if (lowerInput.checked) {
+        password += getRandomData(lowerSet)
+    }
+    if (numberInput.checked) {
+        password += getRandomData(numberSet)
+    }
+    if (symbolInput.checked) {
+        password += getRandomData(symbolSet)
+    }
+    if (password.length < totalChar.value) {
+        return generatePassword(password)
+    }
+
+    passBox.innerText = truncateString(password, totalChar.value);
+}
+
+
+generatePassword();
+
+document.getElementById("btn").addEventListener(
+    "click",
+    function() {
+        generatePassword();
+    }
+
+)
+
+function truncateString(str, num) {
+    if (str.length > num) {
+        let subStr = str.substring(0, num);
+        return subStr;
+    } else {
+        return str;
+    }
 }
 
 function copyPassword(){
-    passwordBox.select();
-    navigator.clipboard.writeText(passwordBox.value);
+    passBox.select();
+    navigator.clipboard.writeText(passBox.value);
 }

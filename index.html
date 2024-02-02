@@ -8,12 +8,61 @@
 </head>
 <body>
     <div class="container">
-        <h1>Generate a <br><span>Random Password</span></h1>
+        <h1><span>Random Password</span></h1>
         <div class="display">
-            <input type="text" id="password" placeholder="Password">
+            <span id="pass-box"></span>
             <img src="images/copy.png" onclick="copyPassword()">
         </div>
-        <button onclick="createPassword()"><img src="images/generate.png" >Generate Password</button>
+        <div class="row">
+            <div class="left">
+                Length
+            </div>
+            <div class="right">
+                <input type="number" name="" id="total-char" max="16" min="4" value="10" />
+            </div>
+        </div>
+        <div class="row">
+            <label for="upper-case">
+                <div class="left">
+                   Uppercase
+                </div>
+            </label>
+            <div class="right">
+                <input type="checkbox" name="" id="upper-case" checked/>
+            </div>
+        </div>
+        <div class="row">
+            <label for="lower-case">
+                <div class="left">
+                  Lowercase
+                </div>
+            </label>
+            <div class="right">
+                <input type="checkbox" name="" id="lower-case" />
+            </div>
+        </div>
+        <div class="row">
+            <label for="numbers">
+                <div class="left">
+                Numbers
+                </div>
+            </label>
+            <div class="right">
+                <input type="checkbox" name="" id="numbers" />
+            </div>
+        </div>
+        <div class="row">
+            <label for="symbols">
+                <div class="left">
+                Symbols
+                </div>
+            </label>
+            <div class="right">
+                <input type="checkbox" name="" id="symbols" />
+            </div>
+        </div>
+
+        <button id="btn"><img src="images/generate.png" >Generate Password</button>
     </div>
     <script src="script.js"></script>
 </body>
